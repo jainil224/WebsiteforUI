@@ -1,39 +1,17 @@
 import { Icon } from './icons'
+import { HeroShowcase } from './HeroShowcase'
 import { routeMeta } from '../lib/routes'
-import type { AppTheme } from '../lib/theme'
 
 type EntryHeroProps = {
-  theme: AppTheme
-  onToggleTheme: () => void
   onEnter: () => void
 }
 
 const meta = routeMeta['/']
 
-export function EntryHero({ theme, onToggleTheme, onEnter }: EntryHeroProps) {
+export function EntryHero({ onEnter }: EntryHeroProps) {
   return (
-    <div className="entry-hero">
-      <header className="entry-hero__bar">
-        <a className="brand entry-hero__brand" href="#/" aria-label="InspoVault home">
-          <span className="brand-mark" aria-hidden="true">
-            <Icon name="spark" size={18} />
-          </span>
-          <span className="brand-name">InspoVault</span>
-        </a>
-
-        <button
-          type="button"
-          className="btn btn--secondary theme-toggle entry-hero__theme"
-          onClick={onToggleTheme}
-          aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
-          title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
-        >
-          <Icon name={theme === 'dark' ? 'sun' : 'moon'} size={16} />
-          <span>{theme === 'dark' ? 'Light' : 'Dark'}</span>
-        </button>
-      </header>
-
-      <main className="entry-hero__main">
+    <main className="entry-hero" id="main-content">
+      <div className="entry-hero__main">
         <div className="entry-hero__content">
           <p className="entry-hero__eyebrow">
             <Icon name="spark" size={12} />
@@ -66,35 +44,8 @@ export function EntryHero({ theme, onToggleTheme, onEnter }: EntryHeroProps) {
           </p>
         </div>
 
-        <div className="entry-hero__visual" aria-hidden="true">
-          <span className="entry-hero__orbit entry-hero__orbit--outer" />
-          <span className="entry-hero__orbit entry-hero__orbit--mid" />
-          <span className="entry-hero__orbit entry-hero__orbit--inner" />
-
-          <span className="entry-hero__spark">
-            <Icon name="spark" size={34} />
-          </span>
-
-          <span className="entry-hero__tag entry-hero__tag--top">
-            <Icon name="hero" size={14} />
-            Hero sections
-          </span>
-          <span className="entry-hero__tag entry-hero__tag--right">
-            <Icon name="cursor" size={14} />
-            Micro-interactions
-          </span>
-          <span className="entry-hero__tag entry-hero__tag--bottom">
-            <Icon name="typography" size={14} />
-            Typography
-          </span>
-        </div>
-      </main>
-
-      <footer className="entry-hero__footer">
-        <p className="entry-hero__footer-note">
-          No feed. No cloud. Just ideas worth keeping.
-        </p>
-      </footer>
-    </div>
+        <HeroShowcase />
+      </div>
+    </main>
   )
 }

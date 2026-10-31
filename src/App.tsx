@@ -3,6 +3,9 @@ import { SidebarNav } from './components/SidebarNav'
 import { MobileNavDrawer } from './components/MobileNavDrawer'
 import { AppHeader } from './components/AppHeader'
 import { EntryHero } from './components/EntryHero'
+import { PublicLayout } from './components/PublicLayout'
+import { FeaturesPage } from './components/FeaturesPage'
+import { AboutPage } from './components/AboutPage'
 import { DashboardView } from './components/DashboardView'
 import { CollectionsView } from './components/CollectionsView'
 import { SectionPlaceholder } from './components/SectionPlaceholder'
@@ -30,6 +33,7 @@ import type { StorageResult } from './lib/storageTypes'
 import { useLocalVault } from './lib/useLocalVault'
 import type { InspirationRecord } from './lib/storageTypes'
 import { applyTheme, getInitialTheme } from './lib/theme'
+import { useDocumentTitle } from './lib/useDocumentTitle'
 
 export function App() {
   const { path, category, navigate } = useHashRoute()
@@ -66,6 +70,13 @@ export function App() {
   const [theme, setTheme] = useState(getInitialTheme)
 
   const meta = routeMeta[path] || routeMeta['/dashboard']
+  const isPublicRoute = path === '/' || path === '/features' || path === '/about'
+
+  useDocumentTitle(
+    isPublicRoute
+      ? `${routeMeta[path].title} — InspoVault`
+      : `${meta.title} — InspoVault`,
+  )
 
   const handleToggleTheme = () => {
     const nextTheme = theme === 'dark' ? 'light' : 'dark'
@@ -272,13 +283,20 @@ export function App() {
     return { success: false, error: res.error }
   }
 
-  if (path === '/') {
+  if (isPublicRoute) {
     return (
-      <EntryHero
+      <PublicLayout
+        path={path}
         theme={theme}
         onToggleTheme={handleToggleTheme}
         onEnter={() => navigate('/dashboard')}
-      />
+      >
+        {path === '/' && <EntryHero onEnter={() => navigate('/dashboard')} />}
+        {path === '/features' && (
+          <FeaturesPage onEnter={() => navigate('/dashboard')} />
+        )}
+        {path === '/about' && <AboutPage onEnter={() => navigate('/dashboard')} />}
+      </PublicLayout>
     )
   }
 

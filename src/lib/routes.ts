@@ -2,6 +2,8 @@ export const defaultRoute = '/'
 
 export type RoutePath =
   | '/'
+  | '/features'
+  | '/about'
   | '/dashboard'
   | '/inspirations'
   | '/favorites'
@@ -23,6 +25,20 @@ export const routeMeta: Record<RoutePath, RouteMeta> = {
     eyebrow: 'Your visual vault',
     description:
       'A calm, local-first home for the websites, interactions, and details that made you stop scrolling.',
+  },
+  '/features': {
+    title: 'Everything the vault remembers for you',
+    navLabel: 'Features',
+    eyebrow: 'Features',
+    description:
+      'Screenshots, notes, tags, and search built around the reason you saved a reference.',
+  },
+  '/about': {
+    title: 'Built for the ideas you almost forgot',
+    navLabel: 'About',
+    eyebrow: 'About',
+    description:
+      'A personal, local-first archive for the websites that made you stop scrolling.',
   },
   '/dashboard': {
     title: 'My Inspiration Library',

@@ -3,6 +3,8 @@ import { navGroups, routeMeta, type RoutePath } from '../lib/routes'
 
 const navIcons: Record<RoutePath, IconName> = {
   '/': 'spark',
+  '/features': 'library',
+  '/about': 'shield',
   '/dashboard': 'dashboard',
   '/inspirations': 'library',
   '/favorites': 'heart',
