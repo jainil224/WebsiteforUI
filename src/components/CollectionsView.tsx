@@ -5,11 +5,12 @@ import { FilterToolbar } from './FilterToolbar'
 import { filterAndSortItems, type SortOption } from '../lib/libraryFilters'
 import { CollectionModal } from './CollectionModal'
 import { ConfirmDeleteModal } from './ConfirmDeleteModal'
-import type { CollectionRecord, InspirationRecord } from '../lib/storageTypes'
+import type { CategoryRecord, CollectionRecord, InspirationRecord } from '../lib/storageTypes'
 
 type CollectionsViewProps = {
   collections: CollectionRecord[]
   items: InspirationRecord[]
+  categories?: CategoryRecord[]
   selectedCollectionId?: string
   searchQuery: string
   selectedCategory: string
@@ -34,6 +35,7 @@ type CollectionsViewProps = {
 export function CollectionsView({
   collections,
   items,
+  categories,
   selectedCollectionId: initialSelectedCollectionId,
   searchQuery,
   selectedCategory,
@@ -194,6 +196,7 @@ export function CollectionsView({
         {/* Filter and sorting toolbar within the collection */}
         {totalAssigned > 0 && (
           <FilterToolbar
+            categories={categories}
             selectedCategory={selectedCategory}
             onSelectCategory={onSelectCategory}
             selectedTag={selectedTag}

@@ -1,4 +1,5 @@
 import type { IconName } from '../components/icons'
+import { STORAGE_KEYS } from '../lib/storageTypes'
 
 export type Category = {
   id: string
@@ -21,8 +22,26 @@ export const categories: Category[] = [
   { id: 'other', label: 'Other', icon: 'more' },
 ]
 
+export function getLoadedCategories(): Category[] {
+  if (typeof window === 'undefined' || !window.localStorage) {
+    return categories
+  }
+  try {
+    const raw = window.localStorage.getItem(STORAGE_KEYS.CATEGORIES)
+    if (!raw) return categories
+    const parsed = JSON.parse(raw)
+    if (Array.isArray(parsed) && parsed.length > 0) {
+      return parsed
+    }
+  } catch {
+    // fallback
+  }
+  return categories
+}
+
 export function getCategory(id: string) {
-  return categories.find((category) => category.id === id)
+  const all = getLoadedCategories()
+  return all.find((category) => category.id === id) || categories.find((category) => category.id === id)
 }
 
 export function getCategoryLabel(id: string) {

@@ -40,6 +40,7 @@ export function App() {
   const {
     items,
     collections,
+    categories: vaultCategories,
     loading,
     storageError,
     opfsAvailable,
@@ -52,6 +53,8 @@ export function App() {
     createCollection,
     updateCollection,
     deleteCollection,
+    createCategory,
+    deleteCategory,
   } = useLocalVault()
 
   const [searchQuery, setSearchQuery] = useState('')
@@ -361,6 +364,7 @@ export function App() {
           ) : path === '/dashboard' || path === '/inspirations' ? (
             <DashboardView
               items={items}
+              categories={vaultCategories}
               filteredItems={filteredItems}
               searchQuery={searchQuery}
               selectedCategory={selectedCategory}
@@ -381,6 +385,7 @@ export function App() {
             <CollectionsView
               collections={collections}
               items={items}
+              categories={vaultCategories}
               searchQuery={searchQuery}
               selectedCategory={selectedCategory}
               selectedTag={selectedTag}
@@ -404,6 +409,7 @@ export function App() {
             <SectionPlaceholder
               path={path}
               items={items}
+              categories={vaultCategories}
               filteredFavorites={filteredFavorites}
               searchQuery={searchQuery}
               selectedCategory={selectedCategory}
@@ -419,6 +425,8 @@ export function App() {
               onSelectRecord={setViewingRecord}
               onEditRecord={setEditingRecord}
               onDeleteRecord={setRecordToDelete}
+              onCreateCategory={createCategory}
+              onDeleteCategory={deleteCategory}
               onExportJson={handleExportJson}
               onExportFullBackup={handleExportFullBackup}
               onRestoreBackup={handleRestoreBackup}
@@ -452,6 +460,7 @@ export function App() {
           initialRecord={editingRecord}
           existingRecords={items}
           collections={collections}
+          categories={vaultCategories}
           initialCollectionId={presetCollectionId}
           onClose={() => {
             setIsAddModalOpen(false)

@@ -55,6 +55,7 @@ export function DashboardView({
 
       {/* Filter and sorting toolbar */}
       <FilterToolbar
+        categories={categories}
         selectedCategory={selectedCategory}
         onSelectCategory={onSelectCategory}
         selectedTag={selectedTag}
