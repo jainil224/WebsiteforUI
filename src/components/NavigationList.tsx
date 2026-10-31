@@ -2,6 +2,7 @@ import { Icon, type IconName } from './icons'
 import { navGroups, routeMeta, type RoutePath } from '../lib/routes'
 
 const navIcons: Record<RoutePath, IconName> = {
+  '/': 'spark',
   '/dashboard': 'dashboard',
   '/inspirations': 'library',
   '/favorites': 'heart',

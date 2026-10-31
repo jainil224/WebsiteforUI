@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react'
 import { SidebarNav } from './components/SidebarNav'
 import { MobileNavDrawer } from './components/MobileNavDrawer'
 import { AppHeader } from './components/AppHeader'
+import { EntryHero } from './components/EntryHero'
 import { DashboardView } from './components/DashboardView'
 import { CollectionsView } from './components/CollectionsView'
 import { SectionPlaceholder } from './components/SectionPlaceholder'
@@ -271,6 +272,16 @@ export function App() {
     return { success: false, error: res.error }
   }
 
+  if (path === '/') {
+    return (
+      <EntryHero
+        theme={theme}
+        onToggleTheme={handleToggleTheme}
+        onEnter={() => navigate('/dashboard')}
+      />
+    )
+  }
+
   return (
     <div className="app" id="top">
       <a className="skip-link btn btn--primary" href="#main-content">
@@ -319,6 +330,7 @@ export function App() {
           totalCount={items.length}
           theme={theme}
           onToggleTheme={handleToggleTheme}
+          showIntro={path !== '/dashboard'}
         />
 
         <main id="main-content" className="app-main">
@@ -332,6 +344,7 @@ export function App() {
             <DashboardView
               items={items}
               filteredItems={filteredItems}
+              showHero={path === '/dashboard'}
               collectionsCount={collections.length}
               searchQuery={searchQuery}
               selectedCategory={selectedCategory}

@@ -1,6 +1,7 @@
-export const defaultRoute = '/dashboard'
+export const defaultRoute = '/'
 
 export type RoutePath =
+  | '/'
   | '/dashboard'
   | '/inspirations'
   | '/favorites'
@@ -16,6 +17,13 @@ export type RouteMeta = {
 }
 
 export const routeMeta: Record<RoutePath, RouteMeta> = {
+  '/': {
+    title: 'Save the spark. Find it when you need it.',
+    navLabel: 'Welcome',
+    eyebrow: 'Your visual vault',
+    description:
+      'A calm, local-first home for the websites, interactions, and details that made you stop scrolling.',
+  },
   '/dashboard': {
     title: 'My Inspiration Library',
     navLabel: 'Dashboard',

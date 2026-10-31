@@ -1,13 +1,16 @@
 import { Icon } from './icons'
 import { categories } from '../data/categories'
+import { DashboardHero } from './DashboardHero'
 import { FilterToolbar } from './FilterToolbar'
 import { InspirationCard } from './InspirationCard'
+import { routeMeta } from '../lib/routes'
 import type { SortOption } from '../lib/libraryFilters'
 import type { InspirationRecord } from '../lib/storageTypes'
 
 type DashboardViewProps = {
   items: InspirationRecord[]
   filteredItems: InspirationRecord[]
+  showHero?: boolean
   collectionsCount?: number
   searchQuery: string
   selectedCategory: string
@@ -28,6 +31,7 @@ type DashboardViewProps = {
 export function DashboardView({
   items,
   filteredItems,
+  showHero = false,
   collectionsCount = 0,
   searchQuery,
   selectedCategory,
@@ -54,25 +58,40 @@ export function DashboardView({
 
   return (
     <div className="dashboard-view">
-      {/* Metrics Row */}
-      <div className="metrics-strip">
-        <div className="metric-card">
-          <span className="metric-card__value">{items.length}</span>
-          <span className="metric-card__label">Saved Inspirations</span>
+      {showHero && (
+        <DashboardHero
+          eyebrow={routeMeta['/dashboard'].eyebrow}
+          title={routeMeta['/dashboard'].title}
+          description={routeMeta['/dashboard'].description}
+          savedCount={items.length}
+          favoritesCount={favoritesCount}
+          collectionsCount={collectionsCount}
+          isLibraryEmpty={isLibraryEmpty}
+          onOpenAddModal={onOpenAddModal}
+        />
+      )}
+
+      {/* Metrics Row (kept on views without the hero) */}
+      {!showHero && (
+        <div className="metrics-strip">
+          <div className="metric-card">
+            <span className="metric-card__value">{items.length}</span>
+            <span className="metric-card__label">Saved Inspirations</span>
+          </div>
+          <div className="metric-card">
+            <span className="metric-card__value">{favoritesCount}</span>
+            <span className="metric-card__label">Favorites</span>
+          </div>
+          <div className="metric-card">
+            <span className="metric-card__value">{categories.length}</span>
+            <span className="metric-card__label">Categories</span>
+          </div>
+          <a href="#/collections" className="metric-card metric-card--link">
+            <span className="metric-card__value">{collectionsCount}</span>
+            <span className="metric-card__label">Collections</span>
+          </a>
         </div>
-        <div className="metric-card">
-          <span className="metric-card__value">{favoritesCount}</span>
-          <span className="metric-card__label">Favorites</span>
-        </div>
-        <div className="metric-card">
-          <span className="metric-card__value">{categories.length}</span>
-          <span className="metric-card__label">Categories</span>
-        </div>
-        <a href="#/collections" className="metric-card metric-card--link">
-          <span className="metric-card__value">{collectionsCount}</span>
-          <span className="metric-card__label">Collections</span>
-        </a>
-      </div>
+      )}
 
       {/* Filter and sorting toolbar */}
       <FilterToolbar
@@ -99,19 +118,21 @@ export function DashboardView({
             InspoVault keeps website references, visual previews, and the exact reasons
             why they inspired you. Saved references are stored 100% locally on your computer.
           </p>
-          <div className="empty-state__actions">
-            <button
-              type="button"
-              className="btn btn--primary"
-              onClick={onOpenAddModal}
-            >
-              <Icon name="plus" size={16} />
-              <span>Add First Inspiration</span>
-            </button>
-            <a href="#/inspirations" className="btn btn--secondary">
-              Browse All Sections
-            </a>
-          </div>
+          {!showHero && (
+            <div className="empty-state__actions">
+              <button
+                type="button"
+                className="btn btn--primary"
+                onClick={onOpenAddModal}
+              >
+                <Icon name="plus" size={16} />
+                <span>Add First Inspiration</span>
+              </button>
+              <a href="#/inspirations" className="btn btn--secondary">
+                Browse All Sections
+              </a>
+            </div>
+          )}
         </section>
       ) : isSearchNoResults ? (
         <section className="empty-state dashboard-empty-state" aria-label="No results found">

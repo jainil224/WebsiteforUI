@@ -12,6 +12,7 @@ type AppHeaderProps = {
   totalCount?: number
   theme: AppTheme
   onToggleTheme: () => void
+  showIntro?: boolean
 }
 
 export function AppHeader({
@@ -25,6 +26,7 @@ export function AppHeader({
   totalCount = 0,
   theme,
   onToggleTheme,
+  showIntro = true,
 }: AppHeaderProps) {
   return (
     <header className="app-header">
@@ -93,27 +95,29 @@ export function AppHeader({
         </div>
       </div>
 
-      <div className="app-header__intro">
-        <div className="app-header__titles">
-          {eyebrow && (
-            <p className="app-header__eyebrow">
-              <span className="eyebrow-rule" aria-hidden="true" />
-              {eyebrow}
-            </p>
-          )}
-          <div className="app-header__title-row">
-            <h1 className="app-header__title">{title}</h1>
-            {totalCount > 0 && (
-              <span className="chip chip--tag app-header__count" aria-label={`${totalCount} items saved`}>
-                {totalCount} saved
-              </span>
+      {showIntro && (
+        <div className="app-header__intro">
+          <div className="app-header__titles">
+            {eyebrow && (
+              <p className="app-header__eyebrow">
+                <span className="eyebrow-rule" aria-hidden="true" />
+                {eyebrow}
+              </p>
+            )}
+            <div className="app-header__title-row">
+              <h1 className="app-header__title">{title}</h1>
+              {totalCount > 0 && (
+                <span className="chip chip--tag app-header__count" aria-label={`${totalCount} items saved`}>
+                  {totalCount} saved
+                </span>
+              )}
+            </div>
+            {description && (
+              <p className="app-header__description">{description}</p>
             )}
           </div>
-          {description && (
-            <p className="app-header__description">{description}</p>
-          )}
         </div>
-      </div>
+      )}
     </header>
   )
 }
