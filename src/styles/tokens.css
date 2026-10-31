@@ -1,70 +1,71 @@
 /* ==========================================================================
    InspoVault — design tokens
-   InspoVault's default dark palette with a centralized light theme.
+   Light mode design tokens.
    ========================================================================== */
 
-:root {
-  color-scheme: dark;
+:root,
+:root[data-theme='light'] {
+  color-scheme: light;
 
   /* Brand ---------------------------------------------------------------- */
-  --color-bg: #031211;
-  --color-cream: #e8e4d3;
-  --color-teal: #00aebb;
-  --color-lilac: #e8e4d3;
-  --color-violet: #007f88;
-  --color-white: #e8e4d3;
+  --color-bg: #f5f8f7;
+  --color-cream: #17312f;
+  --color-teal: #008c91;
+  --color-lilac: #d8f0ed;
+  --color-violet: #006f75;
+  --color-white: #ffffff;
 
   /* Surfaces ------------------------------------------------------------- */
-  --color-surface: #0a1e1c;
-  --color-surface-raised: #102724;
-  --color-surface-inset: #061816;
-  --color-cream-surface: #e8e4d3;
-  --color-on-cream: #031211;
-  --color-on-accent: #031211;
-  --color-accent-hover: #007f88;
+  --color-surface: #ffffff;
+  --color-surface-raised: #ffffff;
+  --color-surface-inset: #eaf3f1;
+  --color-cream-surface: #eaf3f1;
+  --color-on-cream: #17312f;
+  --color-on-accent: #ffffff;
+  --color-accent-hover: #006f75;
 
   /* Borders -------------------------------------------------------------- */
   --border-width: 1px;
   --border-width-strong: 2px;
-  --color-border: rgba(232, 228, 211, 0.12);
-  --color-border-strong: rgba(232, 228, 211, 0.22);
-  --color-border-subtle: rgba(232, 228, 211, 0.07);
-  --color-border-on-cream: rgba(3, 18, 17, 0.14);
-  --color-border-on-cream-strong: rgba(3, 18, 17, 0.26);
+  --color-border: #dce7e4;
+  --color-border-strong: #c5d6d2;
+  --color-border-subtle: rgba(23, 49, 47, 0.1);
+  --color-border-on-cream: #dce7e4;
+  --color-border-on-cream-strong: #c5d6d2;
 
   /* Text ----------------------------------------------------------------- */
-  --color-text-primary: #e8e4d3;
-  --color-text-muted: rgba(232, 228, 211, 0.78);
-  --color-text-subtle: rgba(232, 228, 211, 0.66);
-  --color-text-on-cream: #031211;
-  --color-text-on-cream-muted: rgba(3, 18, 17, 0.78);
-  --color-text-on-cream-subtle: rgba(3, 18, 17, 0.66);
+  --color-text-primary: #17312f;
+  --color-text-muted: #405d59;
+  --color-text-subtle: #647875;
+  --color-text-on-cream: #17312f;
+  --color-text-on-cream-muted: #405d59;
+  --color-text-on-cream-subtle: #647875;
 
   /* Teal accents --------------------------------------------------------- */
-  --color-teal-softer: rgba(0, 174, 187, 0.08);
-  --color-teal-soft: rgba(0, 174, 187, 0.14);
-  --color-teal-line: rgba(0, 174, 187, 0.34);
-  --color-teal-glow: rgba(0, 174, 187, 0.16);
-  --color-teal-glow-strong: rgba(0, 174, 187, 0.34);
-  --color-teal-hover: rgba(0, 174, 187, 0.15);
-  --color-focus: #00aebb;
-  --color-focus-on-cream: #031211;
+  --color-teal-softer: rgba(0, 140, 145, 0.045);
+  --color-teal-soft: #d8f0ed;
+  --color-teal-line: rgba(0, 140, 145, 0.28);
+  --color-teal-glow: rgba(0, 140, 145, 0.1);
+  --color-teal-glow-strong: rgba(0, 140, 145, 0.24);
+  --color-teal-hover: rgba(0, 140, 145, 0.1);
+  --color-focus: #006f75;
+  --color-focus-on-cream: #17312f;
 
   /* Neutral highlights and overlays -------------------------------------- */
-  --color-inset-highlight: rgba(232, 228, 211, 0.04);
-  --color-cream-soft: rgba(232, 228, 211, 0.08);
-  --color-cream-ring: rgba(232, 228, 211, 0.1);
-  --color-backdrop: rgba(3, 18, 17, 0.82);
-  --color-danger: #ffd4d4;
-  --color-danger-border: rgba(255, 122, 122, 0.28);
-  --color-danger-soft: rgba(255, 122, 122, 0.1);
+  --color-inset-highlight: rgba(255, 255, 255, 0.8);
+  --color-cream-soft: rgba(23, 49, 47, 0.04);
+  --color-cream-ring: rgba(23, 49, 47, 0.08);
+  --color-backdrop: rgba(12, 31, 29, 0.46);
+  --color-danger: #8c2525;
+  --color-danger-border: rgba(140, 37, 37, 0.22);
+  --color-danger-soft: rgba(140, 37, 37, 0.06);
 
   /* Semantic aliases ----------------------------------------------------- */
   --color-bg-page: var(--color-bg);
   --color-card: var(--color-surface);
   --color-card-raised: var(--color-surface-raised);
-  --color-link: var(--color-lilac);
-  --color-link-hover: var(--color-cream);
+  --color-link: #006f75;
+  --color-link-hover: #17312f;
 
   /* Typography ----------------------------------------------------------- */
   --font-sans: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont,
@@ -127,15 +128,15 @@
   --radius-full: 999px;
 
   /* Shadows -------------------------------------------------------------- */
-  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.24);
-  --shadow-sm: 0 8px 24px rgba(0, 0, 0, 0.22);
-  --shadow-md: 0 18px 48px rgba(0, 0, 0, 0.28);
-  --shadow-lg: 0 28px 80px rgba(0, 0, 0, 0.32);
-  --shadow-cream: 0 28px 80px rgba(0, 0, 0, 0.32),
-    inset 0 1px 0 rgba(232, 228, 211, 0.24);
+  --shadow-xs: 0 1px 2px rgba(23, 49, 47, 0.06);
+  --shadow-sm: 0 8px 24px rgba(23, 49, 47, 0.07);
+  --shadow-md: 0 18px 48px rgba(23, 49, 47, 0.1);
+  --shadow-lg: 0 28px 80px rgba(23, 49, 47, 0.14);
+  --shadow-cream: 0 18px 48px rgba(23, 49, 47, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
   --shadow-teal: 0 0 0 1px var(--color-teal-line),
-    0 12px 36px var(--color-teal-glow);
-  --shadow-focus: 0 0 0 3px rgba(0, 174, 187, 0.2);
+    0 8px 22px var(--color-teal-glow);
+  --shadow-focus: 0 0 0 3px rgba(0, 111, 117, 0.16);
 
   /* Motion --------------------------------------------------------------- */
   --duration-instant: 120ms;
@@ -175,86 +176,6 @@
   --z-toast: 50;
 
   /* Gradients ------------------------------------------------------------ */
-  --gradient-page: none;
-  --gradient-card-sheen: none;
-  --gradient-action: linear-gradient(120deg, #00aebb 0%, #007f88 100%);
-  --gradient-teal-line: linear-gradient(
-    90deg,
-    transparent,
-    rgba(0, 174, 187, 0.72),
-    transparent
-  );
-  --gradient-skeleton: linear-gradient(
-    90deg,
-    transparent,
-    rgba(232, 228, 211, 0.07),
-    transparent
-  );
-}
-
-:root[data-theme='light'] {
-  color-scheme: light;
-  --color-bg: #f5f8f7;
-  --color-cream: #17312f;
-  --color-teal: #008c91;
-  --color-lilac: #d8f0ed;
-  --color-violet: #006f75;
-  --color-white: #ffffff;
-
-  --color-surface: #ffffff;
-  --color-surface-raised: #ffffff;
-  --color-surface-inset: #eaf3f1;
-  --color-cream-surface: #eaf3f1;
-  --color-on-cream: #17312f;
-  --color-on-accent: #ffffff;
-  --color-accent-hover: #006f75;
-
-  --color-border: #dce7e4;
-  --color-border-strong: #c5d6d2;
-  --color-border-subtle: rgba(23, 49, 47, 0.1);
-  --color-border-on-cream: #dce7e4;
-  --color-border-on-cream-strong: #c5d6d2;
-
-  --color-text-primary: #17312f;
-  --color-text-muted: #405d59;
-  --color-text-subtle: #647875;
-  --color-text-on-cream: #17312f;
-  --color-text-on-cream-muted: #405d59;
-  --color-text-on-cream-subtle: #647875;
-
-  --color-teal-softer: rgba(0, 140, 145, 0.045);
-  --color-teal-soft: #d8f0ed;
-  --color-teal-line: rgba(0, 140, 145, 0.28);
-  --color-teal-glow: rgba(0, 140, 145, 0.1);
-  --color-teal-glow-strong: rgba(0, 140, 145, 0.24);
-  --color-teal-hover: rgba(0, 140, 145, 0.1);
-  --color-focus: #006f75;
-  --color-focus-on-cream: #17312f;
-
-  --color-inset-highlight: rgba(255, 255, 255, 0.8);
-  --color-cream-soft: rgba(23, 49, 47, 0.04);
-  --color-cream-ring: rgba(23, 49, 47, 0.08);
-  --color-backdrop: rgba(12, 31, 29, 0.46);
-  --color-danger: #8c2525;
-  --color-danger-border: rgba(140, 37, 37, 0.22);
-  --color-danger-soft: rgba(140, 37, 37, 0.06);
-
-  --color-bg-page: var(--color-bg);
-  --color-card: var(--color-surface);
-  --color-card-raised: var(--color-surface-raised);
-  --color-link: #006f75;
-  --color-link-hover: #17312f;
-
-  --shadow-xs: 0 1px 2px rgba(23, 49, 47, 0.06);
-  --shadow-sm: 0 8px 24px rgba(23, 49, 47, 0.07);
-  --shadow-md: 0 18px 48px rgba(23, 49, 47, 0.1);
-  --shadow-lg: 0 28px 80px rgba(23, 49, 47, 0.14);
-  --shadow-cream: 0 18px 48px rgba(23, 49, 47, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.8);
-  --shadow-teal: 0 0 0 1px var(--color-teal-line),
-    0 8px 22px var(--color-teal-glow);
-  --shadow-focus: 0 0 0 3px rgba(0, 111, 117, 0.16);
-
   --gradient-page: none;
   --gradient-card-sheen: none;
   --gradient-action: linear-gradient(120deg, #006f75 0%, #006f75 100%);

@@ -1,8 +1,10 @@
-import { categories } from '../data/categories'
+import { categories as defaultCategories } from '../data/categories'
 import { sortOptions, type SortOption } from '../lib/libraryFilters'
 import { Icon } from './icons'
+import type { CategoryRecord } from '../lib/storageTypes'
 
 type FilterToolbarProps = {
+  categories?: CategoryRecord[]
   selectedCategory: string
   onSelectCategory: (categoryId: string) => void
   selectedTag: string
@@ -16,6 +18,7 @@ type FilterToolbarProps = {
 }
 
 export function FilterToolbar({
+  categories = defaultCategories,
   selectedCategory,
   onSelectCategory,
   selectedTag,

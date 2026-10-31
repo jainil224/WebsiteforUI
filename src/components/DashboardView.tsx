@@ -2,10 +2,11 @@ import { Icon } from './icons'
 import { FilterToolbar } from './FilterToolbar'
 import { InspirationCard } from './InspirationCard'
 import type { SortOption } from '../lib/libraryFilters'
-import type { InspirationRecord } from '../lib/storageTypes'
+import type { CategoryRecord, InspirationRecord } from '../lib/storageTypes'
 
 type DashboardViewProps = {
   items: InspirationRecord[]
+  categories?: CategoryRecord[]
   filteredItems: InspirationRecord[]
   searchQuery: string
   selectedCategory: string
@@ -25,6 +26,7 @@ type DashboardViewProps = {
 
 export function DashboardView({
   items,
+  categories,
   filteredItems,
   searchQuery,
   selectedCategory,

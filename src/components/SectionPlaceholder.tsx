@@ -1,10 +1,11 @@
 import { useRef, useState, type ChangeEvent } from 'react'
 import { Icon } from './icons'
-import { categories } from '../data/categories'
+import { categories as defaultCategories } from '../data/categories'
+import { CategoriesManager } from './CategoriesManager'
 import { InspirationCard } from './InspirationCard'
 import { FilterToolbar } from './FilterToolbar'
 import type { RoutePath } from '../lib/routes'
-import type { InspirationRecord } from '../lib/storageTypes'
+import type { CategoryRecord, InspirationRecord } from '../lib/storageTypes'
 import type { SortOption } from '../lib/libraryFilters'
 import {
   parseLocalBackup,
@@ -17,6 +18,7 @@ import type { StorageResult } from '../lib/storageTypes'
 type SectionPlaceholderProps = {
   path: RoutePath
   items?: InspirationRecord[]
+  categories?: CategoryRecord[]
   filteredFavorites?: InspirationRecord[]
   searchQuery?: string
   selectedCategory?: string
@@ -32,6 +34,8 @@ type SectionPlaceholderProps = {
   onSelectRecord?: (item: InspirationRecord) => void
   onEditRecord?: (item: InspirationRecord) => void
   onDeleteRecord?: (item: InspirationRecord) => void
+  onCreateCategory?: (data: { label: string; icon?: string }) => { success: boolean; error?: Error }
+  onDeleteCategory?: (id: string) => { success: boolean; error?: Error }
   onExportJson?: () => void
   onExportFullBackup?: (
     onProgress: (message: string) => void,
@@ -53,6 +57,7 @@ type SectionPlaceholderProps = {
 export function SectionPlaceholder({
   path,
   items = [],
+  categories = defaultCategories,
   filteredFavorites = [],
   searchQuery = '',
   selectedCategory = '',
@@ -68,6 +73,8 @@ export function SectionPlaceholder({
   onSelectRecord,
   onEditRecord,
   onDeleteRecord,
+  onCreateCategory,
+  onDeleteCategory,
   onExportJson,
   onExportFullBackup,
   onRestoreBackup,
@@ -318,35 +325,13 @@ export function SectionPlaceholder({
   if (path === '/categories') {
     return (
       <div className="section-placeholder categories-view">
-        <div className="categories-grid" role="list" aria-label="Browse categories">
-          {categories.map((cat) => {
-            const count = items.filter((item) => item.categoryId === cat.id).length
-            return (
-              <div key={cat.id} className="card card--interactive category-card" role="listitem">
-                <div className="category-card__header">
-                  <div className="category-card__icon" aria-hidden="true">
-                    <Icon name={cat.icon} size={20} />
-                  </div>
-                  <span className="chip chip--tag">
-                    {count} {count === 1 ? 'item' : 'items'}
-                  </span>
-                </div>
-                <h3 className="category-card__title">{cat.label}</h3>
-                <p className="category-card__desc">
-                  Organize inspirations related to {cat.label.toLowerCase()}.
-                </p>
-                <a
-                  href="#/dashboard"
-                  className="btn btn--ghost btn--sm category-card__action"
-                  onClick={() => onSelectCategory?.(cat.id)}
-                >
-                  <span>Filter in Dashboard</span>
-                  <Icon name="arrow-right" size={13} />
-                </a>
-              </div>
-            )
-          })}
-        </div>
+        <CategoriesManager
+          categories={categories}
+          items={items}
+          onSelectCategory={onSelectCategory}
+          onCreateCategory={onCreateCategory || (() => ({ success: false }))}
+          onDeleteCategory={onDeleteCategory || (() => ({ success: false }))}
+        />
       </div>
     )
   }

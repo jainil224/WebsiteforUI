@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState, type ChangeEvent, type FormEvent } from 'react'
 import { ModalDialog } from './ModalDialog'
 import { Icon } from './icons'
-import { categories } from '../data/categories'
+import { categories as defaultCategories } from '../data/categories'
 import { saveLocalImageFile, deleteLocalImageFile, readLocalImageObjectURL, isOPFSSupported } from '../lib/opfsStorage'
 import { extractDomain, normalizeUrl } from '../lib/localVaultStorage'
-import type { CollectionRecord, InspirationRecord } from '../lib/storageTypes'
+import type { CategoryRecord, CollectionRecord, InspirationRecord } from '../lib/storageTypes'
 
 type InspirationFormModalProps = {
   open: boolean
@@ -12,6 +12,7 @@ type InspirationFormModalProps = {
   initialRecord?: InspirationRecord | null
   existingRecords?: InspirationRecord[]
   collections?: CollectionRecord[]
+  categories?: CategoryRecord[]
   initialCollectionId?: string
   onClose: () => void
   onSave: (recordData: {
@@ -32,6 +33,7 @@ export function InspirationFormModal({
   initialRecord,
   existingRecords = [],
   collections = [],
+  categories = defaultCategories,
   initialCollectionId,
   onClose,
   onSave,

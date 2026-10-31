@@ -1,4 +1,5 @@
 import {
+  type CategoryRecord,
   type CollectionRecord,
   type InspirationRecord,
   type LocalVaultSettings,
@@ -6,6 +7,7 @@ import {
   STORAGE_KEYS,
   StorageError,
 } from './storageTypes'
+import { categories as defaultCategories } from '../data/categories'
 import { deleteLocalImageFile } from './opfsStorage'
 
 /**
@@ -949,6 +951,136 @@ export function deleteCollection(id: string): StorageResult<boolean> {
         const { collectionId: _, ...rest } = insp
         return {
           ...rest,
+          updatedAt: Date.now(),
+        }
+      }
+      return insp
+    })
+
+    if (hasChanges) {
+      setAllInspirations(updatedInspirations)
+    }
+  }
+
+  return { success: true, data: true }
+}
+
+
+/**
+ * Category Management operations
+ */
+export function getAllCategories(): StorageResult<CategoryRecord[]> {
+  if (!isLocalStorageAvailable()) {
+    return { success: true, data: defaultCategories }
+  }
+
+  try {
+    const raw = window.localStorage.getItem(STORAGE_KEYS.CATEGORIES)
+    if (!raw) {
+      return { success: true, data: defaultCategories }
+    }
+    const parsed = JSON.parse(raw)
+    if (!Array.isArray(parsed) || parsed.length === 0) {
+      return { success: true, data: defaultCategories }
+    }
+    return { success: true, data: parsed as CategoryRecord[] }
+  } catch {
+    return { success: true, data: defaultCategories }
+  }
+}
+
+export function setAllCategories(categories: CategoryRecord[]): StorageResult<boolean> {
+  if (!isLocalStorageAvailable()) {
+    return {
+      success: false,
+      error: new StorageError('STORAGE_UNAVAILABLE', 'Local storage is unavailable.'),
+    }
+  }
+
+  try {
+    window.localStorage.setItem(STORAGE_KEYS.CATEGORIES, JSON.stringify(categories))
+    return { success: true, data: true }
+  } catch (err) {
+    return {
+      success: false,
+      error: new StorageError(
+        'FILE_WRITE_FAILED',
+        `Failed to save categories: ${err instanceof Error ? err.message : String(err)}`,
+      ),
+    }
+  }
+}
+
+export function createCategory(input: { label: string; icon?: string }): StorageResult<CategoryRecord> {
+  const trimmed = input.label.trim()
+  if (!trimmed) {
+    return {
+      success: false,
+      error: new StorageError('INVALID_INPUT', 'Category name cannot be empty.'),
+    }
+  }
+
+  const existingRes = getAllCategories()
+  const existing = existingRes.success ? existingRes.data : defaultCategories
+
+  const id = trimmed
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '') || `cat-${Date.now()}`
+
+  if (existing.some((c) => c.id === id || c.label.toLowerCase() === trimmed.toLowerCase())) {
+    return {
+      success: false,
+      error: new StorageError('INVALID_INPUT', `A category named "${trimmed}" already exists.`),
+    }
+  }
+
+  const newCat: CategoryRecord = {
+    id,
+    label: trimmed,
+    icon: input.icon || 'categories',
+  }
+
+  const updated = [...existing, newCat]
+  const saveRes = setAllCategories(updated)
+  if (!saveRes.success) return saveRes
+
+  return { success: true, data: newCat }
+}
+
+export function deleteCategory(id: string): StorageResult<boolean> {
+  if (id === 'other') {
+    return {
+      success: false,
+      error: new StorageError('INVALID_INPUT', 'The default "Other" category cannot be deleted.'),
+    }
+  }
+
+  const existingRes = getAllCategories()
+  const existing = existingRes.success ? existingRes.data : defaultCategories
+
+  const found = existing.some((c) => c.id === id)
+  if (!found) {
+    return {
+      success: false,
+      error: new StorageError('NOT_FOUND', `Category with ID "${id}" was not found.`),
+    }
+  }
+
+  const updated = existing.filter((c) => c.id !== id)
+  const saveRes = setAllCategories(updated)
+  if (!saveRes.success) return saveRes
+
+  // Re-assign any items using this category to 'other'
+  const allInspRes = getAllInspirations()
+  if (allInspRes.success && allInspRes.data.length > 0) {
+    let hasChanges = false
+    const updatedInspirations = allInspRes.data.map((insp) => {
+      if (insp.categoryId === id) {
+        hasChanges = true
+        return {
+          ...insp,
+          categoryId: 'other',
           updatedAt: Date.now(),
         }
       }

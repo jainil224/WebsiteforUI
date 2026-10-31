@@ -33,6 +33,12 @@ export type CollectionRecord = {
   updatedAt: number
 }
 
+export type CategoryRecord = {
+  id: string
+  label: string
+  icon: string
+}
+
 export type StorageResult<T> =
   | { success: true; data: T }
   | { success: false; error: StorageError }
@@ -67,5 +73,6 @@ export type LocalVaultSettings = {
 export const STORAGE_KEYS = {
   INSPIRATIONS: 'inspovault_records_v1',
   COLLECTIONS: 'inspovault_collections_v1',
+  CATEGORIES: 'inspovault_categories_v1',
   SETTINGS: 'inspovault_settings_v1',
 } as const

@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react'
-import type { CollectionRecord, InspirationRecord } from './storageTypes'
+import type { CategoryRecord, CollectionRecord, InspirationRecord } from './storageTypes'
 import {
   getAllInspirations,
   createInspiration,
@@ -10,27 +10,35 @@ import {
   createCollection,
   updateCollection,
   deleteCollection,
+  getAllCategories,
+  createCategory,
+  deleteCategory,
 } from './localVaultStorage'
 import { isOPFSSupported } from './opfsStorage'
 
 function loadInitialVault(): {
   items: InspirationRecord[]
   collections: CollectionRecord[]
+  categories: CategoryRecord[]
   error: string | null
 } {
   const itemsRes = getAllInspirations()
   const collectionsRes = getAllCollections()
+  const categoriesRes = getAllCategories()
 
   let error: string | null = null
   if (!itemsRes.success) {
     error = itemsRes.error.message
   } else if (!collectionsRes.success) {
     error = collectionsRes.error.message
+  } else if (!categoriesRes.success) {
+    error = categoriesRes.error.message
   }
 
   return {
     items: itemsRes.success ? itemsRes.data : [],
     collections: collectionsRes.success ? collectionsRes.data : [],
+    categories: categoriesRes.success ? categoriesRes.data : [],
     error,
   }
 }
@@ -39,6 +47,7 @@ export function useLocalVault() {
   const [initialData] = useState(loadInitialVault)
   const [items, setItems] = useState<InspirationRecord[]>(initialData.items)
   const [collections, setCollections] = useState<CollectionRecord[]>(initialData.collections)
+  const [categoriesList, setCategoriesList] = useState<CategoryRecord[]>(initialData.categories)
   const [loading, setLoading] = useState(false)
   const [storageError, setStorageError] = useState<string | null>(initialData.error)
   const [opfsAvailable] = useState(() => isOPFSSupported())
@@ -46,6 +55,7 @@ export function useLocalVault() {
   const reloadAll = useCallback(() => {
     const itemsRes = getAllInspirations()
     const colsRes = getAllCollections()
+    const catsRes = getAllCategories()
 
     if (itemsRes.success) {
       setItems(itemsRes.data)
@@ -59,7 +69,13 @@ export function useLocalVault() {
       setStorageError(colsRes.error.message)
     }
 
-    if (itemsRes.success && colsRes.success) {
+    if (catsRes.success) {
+      setCategoriesList(catsRes.data)
+    } else {
+      setStorageError(catsRes.error.message)
+    }
+
+    if (itemsRes.success && colsRes.success && catsRes.success) {
       setStorageError(null)
     }
 
@@ -165,9 +181,39 @@ export function useLocalVault() {
     [reloadAll],
   )
 
+  // Categories Operations
+  const handleCreateCategory = useCallback(
+    (input: Parameters<typeof createCategory>[0]) => {
+      const res = createCategory(input)
+      if (res.success) {
+        reloadAll()
+        return res
+      } else {
+        setStorageError(res.error.message)
+        return res
+      }
+    },
+    [reloadAll],
+  )
+
+  const handleDeleteCategory = useCallback(
+    (id: string) => {
+      const res = deleteCategory(id)
+      if (res.success) {
+        reloadAll()
+        return res
+      } else {
+        setStorageError(res.error.message)
+        return res
+      }
+    },
+    [reloadAll],
+  )
+
   return {
     items,
     collections,
+    categories: categoriesList,
     loading,
     storageError,
     opfsAvailable,
@@ -180,6 +226,8 @@ export function useLocalVault() {
     createCollection: handleCreateCollection,
     updateCollection: handleUpdateCollection,
     deleteCollection: handleDeleteCollection,
+    createCategory: handleCreateCategory,
+    deleteCategory: handleDeleteCategory,
   }
 }
 

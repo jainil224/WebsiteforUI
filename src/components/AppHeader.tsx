@@ -10,8 +10,8 @@ type AppHeaderProps = {
   onOpenAddModal: () => void
   onToggleMobileNav: () => void
   totalCount?: number
-  theme: AppTheme
-  onToggleTheme: () => void
+  theme?: AppTheme
+  onToggleTheme?: () => void
   showIntro?: boolean
 }
 
@@ -72,16 +72,6 @@ export function AppHeader({
         </div>
 
         <div className="app-header__actions">
-          <button
-            type="button"
-            className="btn btn--secondary theme-toggle"
-            onClick={onToggleTheme}
-            aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
-            title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
-          >
-            <Icon name={theme === 'dark' ? 'sun' : 'moon'} size={16} />
-            <span>{theme === 'dark' ? 'Light' : 'Dark'}</span>
-          </button>
           <button
             type="button"
             className="btn btn--primary add-inspiration-btn"
