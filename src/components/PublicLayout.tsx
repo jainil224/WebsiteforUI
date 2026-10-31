@@ -8,21 +8,45 @@ type PublicLayoutProps = {
   children: ReactNode
 }
 
-const links: { path: RoutePath; label: string }[] = [
-  { path: '/features', label: 'Features' },
-  { path: '/about', label: 'About' },
-]
-
 export function PublicLayout({
   path,
   onEnter,
   children,
 }: PublicLayoutProps) {
+  const scrollTo = (id: string) => {
+    if (path !== '/') {
+      window.location.hash = '#/'
+      setTimeout(() => {
+        const el = document.getElementById(id)
+        if (el) el.scrollIntoView({ behavior: 'smooth' })
+      }, 50)
+    } else {
+      const el = document.getElementById(id)
+      if (el) el.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
+
+  const scrollToTop = () => {
+    if (path !== '/') {
+      window.location.hash = '#/'
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+  }
+
   return (
     <div className="site">
       <header className="site-header">
         <div className="site-header__inner">
-          <a className="brand site-header__brand" href="#/" aria-label="InspoVault home">
+          <a
+            className="brand site-header__brand"
+            href="#/"
+            onClick={(e) => {
+              e.preventDefault()
+              scrollToTop()
+            }}
+            aria-label="InspoVault home"
+          >
             <span className="brand-mark" aria-hidden="true">
               <Icon name="spark" size={18} />
             </span>
@@ -30,16 +54,22 @@ export function PublicLayout({
           </a>
 
           <nav className="site-nav" aria-label="Main">
-            {links.map((link) => (
-              <a
-                key={link.path}
-                className="site-nav__link"
-                href={`#${link.path}`}
-                aria-current={path === link.path ? 'page' : undefined}
-              >
-                {link.label}
-              </a>
-            ))}
+            <button
+              type="button"
+              className="site-nav__link"
+              style={{ background: 'none', border: 'none', font: 'inherit', cursor: 'pointer' }}
+              onClick={() => scrollTo('features')}
+            >
+              Features
+            </button>
+            <button
+              type="button"
+              className="site-nav__link"
+              style={{ background: 'none', border: 'none', font: 'inherit', cursor: 'pointer' }}
+              onClick={() => scrollTo('about')}
+            >
+              About
+            </button>
           </nav>
 
           <div className="site-header__actions">
@@ -57,18 +87,6 @@ export function PublicLayout({
       </header>
 
       {children}
-
-      <footer className="site-footer">
-        <div className="site-footer__inner">
-          <p className="site-footer__brand">InspoVault</p>
-          <nav className="site-footer__nav" aria-label="Footer">
-            <a href="#/">Home</a>
-            <a href="#/features">Features</a>
-            <a href="#/about">About</a>
-          </nav>
-          <p className="site-footer__note">Local-first · No account · No cloud</p>
-        </div>
-      </footer>
     </div>
   )
 }

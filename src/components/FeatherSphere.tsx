@@ -37,7 +37,7 @@ export const FeatherSphere: React.FC<FeatherSphereProps> = ({
       G: 0.85,
       Nt: 20, // tier density, spiral, tooth height, ramp, teeth/rev
       center: [0.008, 0.011],
-      fill: 0.724,
+      fill: 0.88,
       stars: 16,
     }
 

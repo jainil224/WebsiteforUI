@@ -4,8 +4,6 @@ import { MobileNavDrawer } from './components/MobileNavDrawer'
 import { AppHeader } from './components/AppHeader'
 import { EntryHero } from './components/EntryHero'
 import { PublicLayout } from './components/PublicLayout'
-import { FeaturesPage } from './components/FeaturesPage'
-import { AboutPage } from './components/AboutPage'
 import { DashboardView } from './components/DashboardView'
 import { CollectionsView } from './components/CollectionsView'
 import { SectionPlaceholder } from './components/SectionPlaceholder'
@@ -284,11 +282,7 @@ export function App() {
         path={path}
         onEnter={() => navigate('/dashboard')}
       >
-        {path === '/' && <EntryHero onEnter={() => navigate('/dashboard')} />}
-        {path === '/features' && (
-          <FeaturesPage onEnter={() => navigate('/dashboard')} />
-        )}
-        {path === '/about' && <AboutPage onEnter={() => navigate('/dashboard')} />}
+        <EntryHero onEnter={() => navigate('/dashboard')} />
       </PublicLayout>
     )
   }
