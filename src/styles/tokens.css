@@ -1,6 +1,9 @@
 /* ==========================================================================
    InspoVault — design tokens
-   Light mode design tokens.
+   Rose/Porcelain Theme inspired by the Feather Sphere color palette:
+   - Deep rose (#E01A33) to vibrant magenta-rose (#FA4D84)
+   - Radiant porcelain & warm blush (#FFF2F5, #FDEDF1, #FFFBFB)
+   - Elegant dark accents (#1F0B10, #3B121C, #6B2334)
    ========================================================================== */
 
 :root,
@@ -8,64 +11,64 @@
   color-scheme: light;
 
   /* Brand ---------------------------------------------------------------- */
-  --color-bg: #f5f8f7;
-  --color-cream: #17312f;
-  --color-teal: #008c91;
-  --color-lilac: #d8f0ed;
-  --color-violet: #006f75;
+  --color-bg: #fff8f9;
+  --color-cream: #1f0b10;
+  --color-teal: #e01a33;
+  --color-lilac: #fde2e8;
+  --color-violet: #bd142b;
   --color-white: #ffffff;
 
   /* Surfaces ------------------------------------------------------------- */
   --color-surface: #ffffff;
   --color-surface-raised: #ffffff;
-  --color-surface-inset: #eaf3f1;
-  --color-cream-surface: #eaf3f1;
-  --color-on-cream: #17312f;
+  --color-surface-inset: #fdf0f3;
+  --color-cream-surface: #fdf0f3;
+  --color-on-cream: #1f0b10;
   --color-on-accent: #ffffff;
-  --color-accent-hover: #006f75;
+  --color-accent-hover: #bd142b;
 
   /* Borders -------------------------------------------------------------- */
   --border-width: 1px;
   --border-width-strong: 2px;
-  --color-border: #dce7e4;
-  --color-border-strong: #c5d6d2;
-  --color-border-subtle: rgba(23, 49, 47, 0.1);
-  --color-border-on-cream: #dce7e4;
-  --color-border-on-cream-strong: #c5d6d2;
+  --color-border: #f3d4dc;
+  --color-border-strong: #e7bcc6;
+  --color-border-subtle: rgba(224, 26, 51, 0.08);
+  --color-border-on-cream: #f3d4dc;
+  --color-border-on-cream-strong: #e7bcc6;
 
   /* Text ----------------------------------------------------------------- */
-  --color-text-primary: #17312f;
-  --color-text-muted: #405d59;
-  --color-text-subtle: #647875;
-  --color-text-on-cream: #17312f;
-  --color-text-on-cream-muted: #405d59;
-  --color-text-on-cream-subtle: #647875;
+  --color-text-primary: #1f0b10;
+  --color-text-muted: #64313e;
+  --color-text-subtle: #8a4e5d;
+  --color-text-on-cream: #1f0b10;
+  --color-text-on-cream-muted: #64313e;
+  --color-text-on-cream-subtle: #8a4e5d;
 
-  /* Teal accents --------------------------------------------------------- */
-  --color-teal-softer: rgba(0, 140, 145, 0.045);
-  --color-teal-soft: #d8f0ed;
-  --color-teal-line: rgba(0, 140, 145, 0.28);
-  --color-teal-glow: rgba(0, 140, 145, 0.1);
-  --color-teal-glow-strong: rgba(0, 140, 145, 0.24);
-  --color-teal-hover: rgba(0, 140, 145, 0.1);
-  --color-focus: #006f75;
-  --color-focus-on-cream: #17312f;
+  /* Rose / Sphere Accents (formerly teal aliases) ------------------------- */
+  --color-teal-softer: rgba(224, 26, 51, 0.05);
+  --color-teal-soft: #fde2e8;
+  --color-teal-line: rgba(224, 26, 51, 0.28);
+  --color-teal-glow: rgba(224, 26, 51, 0.12);
+  --color-teal-glow-strong: rgba(224, 26, 51, 0.28);
+  --color-teal-hover: rgba(224, 26, 51, 0.08);
+  --color-focus: #e01a33;
+  --color-focus-on-cream: #1f0b10;
 
   /* Neutral highlights and overlays -------------------------------------- */
-  --color-inset-highlight: rgba(255, 255, 255, 0.8);
-  --color-cream-soft: rgba(23, 49, 47, 0.04);
-  --color-cream-ring: rgba(23, 49, 47, 0.08);
-  --color-backdrop: rgba(12, 31, 29, 0.46);
-  --color-danger: #8c2525;
-  --color-danger-border: rgba(140, 37, 37, 0.22);
-  --color-danger-soft: rgba(140, 37, 37, 0.06);
+  --color-inset-highlight: rgba(255, 255, 255, 0.9);
+  --color-cream-soft: rgba(224, 26, 51, 0.04);
+  --color-cream-ring: rgba(224, 26, 51, 0.1);
+  --color-backdrop: rgba(31, 11, 16, 0.48);
+  --color-danger: #bd142b;
+  --color-danger-border: rgba(189, 20, 43, 0.25);
+  --color-danger-soft: rgba(189, 20, 43, 0.07);
 
   /* Semantic aliases ----------------------------------------------------- */
   --color-bg-page: var(--color-bg);
   --color-card: var(--color-surface);
   --color-card-raised: var(--color-surface-raised);
-  --color-link: #006f75;
-  --color-link-hover: #17312f;
+  --color-link: #e01a33;
+  --color-link-hover: #1f0b10;
 
   /* Typography ----------------------------------------------------------- */
   --font-sans: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont,
@@ -128,15 +131,15 @@
   --radius-full: 999px;
 
   /* Shadows -------------------------------------------------------------- */
-  --shadow-xs: 0 1px 2px rgba(23, 49, 47, 0.06);
-  --shadow-sm: 0 8px 24px rgba(23, 49, 47, 0.07);
-  --shadow-md: 0 18px 48px rgba(23, 49, 47, 0.1);
-  --shadow-lg: 0 28px 80px rgba(23, 49, 47, 0.14);
-  --shadow-cream: 0 18px 48px rgba(23, 49, 47, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  --shadow-xs: 0 1px 2px rgba(31, 11, 16, 0.05);
+  --shadow-sm: 0 8px 24px rgba(31, 11, 16, 0.07);
+  --shadow-md: 0 18px 48px rgba(31, 11, 16, 0.09);
+  --shadow-lg: 0 28px 80px rgba(31, 11, 16, 0.13);
+  --shadow-cream: 0 18px 48px rgba(31, 11, 16, 0.09),
+    inset 0 1px 0 rgba(255, 255, 255, 0.85);
   --shadow-teal: 0 0 0 1px var(--color-teal-line),
     0 8px 22px var(--color-teal-glow);
-  --shadow-focus: 0 0 0 3px rgba(0, 111, 117, 0.16);
+  --shadow-focus: 0 0 0 3px rgba(224, 26, 51, 0.2);
 
   /* Motion --------------------------------------------------------------- */
   --duration-instant: 120ms;
@@ -176,19 +179,23 @@
   --z-toast: 50;
 
   /* Gradients ------------------------------------------------------------ */
-  --gradient-page: none;
+  --gradient-page: radial-gradient(
+    circle at 80% 20%,
+    rgba(250, 77, 132, 0.08) 0%,
+    transparent 60%
+  );
   --gradient-card-sheen: none;
-  --gradient-action: linear-gradient(120deg, #006f75 0%, #006f75 100%);
+  --gradient-action: linear-gradient(120deg, #e01a33 0%, #fa4d84 100%);
   --gradient-teal-line: linear-gradient(
     90deg,
     transparent,
-    rgba(0, 140, 145, 0.48),
+    rgba(224, 26, 51, 0.48),
     transparent
   );
   --gradient-skeleton: linear-gradient(
     90deg,
     transparent,
-    rgba(23, 49, 47, 0.06),
+    rgba(31, 11, 16, 0.06),
     transparent
   );
 }

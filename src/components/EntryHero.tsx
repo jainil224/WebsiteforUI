@@ -1,5 +1,5 @@
 import { Icon } from './icons'
-import { HeroShowcase } from './HeroShowcase'
+import { FeatherSphere } from './FeatherSphere'
 import { routeMeta } from '../lib/routes'
 
 type EntryHeroProps = {
@@ -44,7 +44,20 @@ export function EntryHero({ onEnter }: EntryHeroProps) {
           </p>
         </div>
 
-        <HeroShowcase />
+        <div
+          className="entry-hero__showcase-wrap"
+          style={{
+            position: 'relative',
+            width: '100%',
+            height: '100%',
+            minHeight: '480px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          <FeatherSphere showHint={false} />
+        </div>
       </div>
 
       <section className="entry-hero__explore" aria-label="Explore InspoVault">
