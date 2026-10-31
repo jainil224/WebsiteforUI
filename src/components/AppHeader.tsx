@@ -1,5 +1,4 @@
 import { Icon } from './icons'
-import type { AppTheme } from '../lib/theme'
 
 type AppHeaderProps = {
   title: string
@@ -10,8 +9,6 @@ type AppHeaderProps = {
   onOpenAddModal: () => void
   onToggleMobileNav: () => void
   totalCount?: number
-  theme?: AppTheme
-  onToggleTheme?: () => void
   showIntro?: boolean
 }
 
@@ -24,8 +21,6 @@ export function AppHeader({
   onOpenAddModal,
   onToggleMobileNav,
   totalCount = 0,
-  theme,
-  onToggleTheme,
   showIntro = true,
 }: AppHeaderProps) {
   return (

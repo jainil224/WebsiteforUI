@@ -53,7 +53,7 @@ export function FilterToolbar({
                 onSelectCategory(selectedCategory === cat.id ? '' : cat.id)
               }
             >
-              <Icon name={cat.icon} size={14} />
+              <Icon name={(cat.icon as any) || 'categories'} size={14} />
               <span>{cat.label}</span>
             </button>
           ))}

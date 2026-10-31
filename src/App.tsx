@@ -32,7 +32,6 @@ import {
 import type { StorageResult } from './lib/storageTypes'
 import { useLocalVault } from './lib/useLocalVault'
 import type { InspirationRecord } from './lib/storageTypes'
-import { applyTheme, getInitialTheme } from './lib/theme'
 import { useDocumentTitle } from './lib/useDocumentTitle'
 
 export function App() {
@@ -70,7 +69,6 @@ export function App() {
   const [recordToDelete, setRecordToDelete] = useState<InspirationRecord | null>(null)
   const [isDeleting, setIsDeleting] = useState(false)
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false)
-  const [theme, setTheme] = useState(getInitialTheme)
 
   const meta = routeMeta[path] || routeMeta['/dashboard']
   const isPublicRoute = path === '/' || path === '/features' || path === '/about'
@@ -80,12 +78,6 @@ export function App() {
       ? `${routeMeta[path].title} — InspoVault`
       : `${meta.title} — InspoVault`,
   )
-
-  const handleToggleTheme = () => {
-    const nextTheme = theme === 'dark' ? 'light' : 'dark'
-    applyTheme(nextTheme, true)
-    setTheme(nextTheme)
-  }
 
   // Dynamically extract all unique tags from currently saved library records
   const availableTags = useMemo(() => {
@@ -290,8 +282,6 @@ export function App() {
     return (
       <PublicLayout
         path={path}
-        theme={theme}
-        onToggleTheme={handleToggleTheme}
         onEnter={() => navigate('/dashboard')}
       >
         {path === '/' && <EntryHero onEnter={() => navigate('/dashboard')} />}
@@ -349,8 +339,6 @@ export function App() {
           onOpenAddModal={() => handleOpenAddModal()}
           onToggleMobileNav={() => setIsMobileNavOpen(true)}
           totalCount={items.length}
-          theme={theme}
-          onToggleTheme={handleToggleTheme}
           showIntro={path !== '/dashboard'}
         />
 

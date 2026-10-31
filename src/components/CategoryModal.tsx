@@ -78,17 +78,36 @@ export function CategoryModal({
     onClose()
   }
 
+  if (!open) return null
+
   return (
     <ModalDialog
       open={open}
       onClose={handleClose}
-      title="Add New Category"
-      description="Create a custom category to organize and tag your design inspirations."
-      maxWidth="md"
+      labelledBy="category-modal-title"
+      className="category-dialog"
     >
-      <form onSubmit={handleSubmit} className="form" noValidate>
+      <div className="dialog__header">
+        <div className="dialog__title-group">
+          <p className="dialog__kicker">Organize Library</p>
+          <h2 id="category-modal-title" className="dialog__title">
+            Add New Category
+          </h2>
+        </div>
+        <button
+          type="button"
+          className="btn btn--ghost btn--icon dialog__close"
+          onClick={handleClose}
+          disabled={isSubmitting}
+          aria-label="Close dialog"
+        >
+          <Icon name="close" size={18} />
+        </button>
+      </div>
+
+      <form onSubmit={handleSubmit} className="dialog__body" noValidate>
         {error && (
-          <div className="alert alert--danger" role="alert">
+          <div className="alert alert--danger" role="alert" style={{ marginBottom: 'var(--space-4)' }}>
             <Icon name="close" size={16} />
             <span>{error}</span>
           </div>
@@ -155,7 +174,7 @@ export function CategoryModal({
           </div>
         </div>
 
-        <div className="modal-dialog__footer" style={{ marginTop: 'var(--space-5)' }}>
+        <div className="dialog__actions" style={{ marginTop: 'var(--space-5)' }}>
           <button
             type="button"
             className="btn btn--secondary"

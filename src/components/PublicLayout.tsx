@@ -1,12 +1,9 @@
 import type { ReactNode } from 'react'
 import { Icon } from './icons'
 import type { RoutePath } from '../lib/routes'
-import type { AppTheme } from '../lib/theme'
 
 type PublicLayoutProps = {
   path: RoutePath
-  theme?: AppTheme
-  onToggleTheme?: () => void
   onEnter: () => void
   children: ReactNode
 }
@@ -18,8 +15,6 @@ const links: { path: RoutePath; label: string }[] = [
 
 export function PublicLayout({
   path,
-  theme,
-  onToggleTheme,
   onEnter,
   children,
 }: PublicLayoutProps) {
