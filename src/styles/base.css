@@ -132,7 +132,8 @@ textarea:disabled {
   outline-color: var(--color-focus-on-cream);
 }
 
-.visually-hidden {
+.visually-hidden,
+.sr-only {
   position: absolute;
   width: 1px;
   height: 1px;
