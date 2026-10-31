@@ -125,16 +125,6 @@ export function HeroShowcase() {
           </article>
         </div>
       </div>
-
-      <span className="hero-showcase__tag hero-showcase__tag--hero">
-        Hero sections
-      </span>
-      <span className="hero-showcase__tag hero-showcase__tag--micro">
-        Micro-interactions
-      </span>
-      <span className="hero-showcase__tag hero-showcase__tag--type">
-        Typography
-      </span>
     </div>
   )
 }

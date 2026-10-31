@@ -362,8 +362,6 @@ export function App() {
             <DashboardView
               items={items}
               filteredItems={filteredItems}
-              showHero={path === '/dashboard'}
-              collectionsCount={collections.length}
               searchQuery={searchQuery}
               selectedCategory={selectedCategory}
               selectedTag={selectedTag}
