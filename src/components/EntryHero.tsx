@@ -46,6 +46,39 @@ export function EntryHero({ onEnter }: EntryHeroProps) {
 
         <HeroShowcase />
       </div>
+
+      <section className="entry-hero__explore" aria-label="Explore InspoVault">
+        <div className="entry-hero__explore-inner">
+          <p className="entry-hero__explore-label">Explore InspoVault</p>
+          <div className="entry-hero__explore-grid">
+            <a className="explore-card" href="#/features">
+              <span className="explore-card__icon" aria-hidden="true">
+                <Icon name="library" size={18} />
+              </span>
+              <span className="explore-card__body">
+                <span className="explore-card__title">Features</span>
+                <span className="explore-card__text">
+                  Screenshots, notes, tags, and search built for recall.
+                </span>
+              </span>
+              <Icon name="arrow-right" size={16} className="explore-card__arrow" />
+            </a>
+
+            <a className="explore-card" href="#/about">
+              <span className="explore-card__icon" aria-hidden="true">
+                <Icon name="shield" size={18} />
+              </span>
+              <span className="explore-card__body">
+                <span className="explore-card__title">About</span>
+                <span className="explore-card__text">
+                  Why the vault stays local, visual, and quiet.
+                </span>
+              </span>
+              <Icon name="arrow-right" size={16} className="explore-card__arrow" />
+            </a>
+          </div>
+        </div>
+      </section>
     </main>
   )
 }
