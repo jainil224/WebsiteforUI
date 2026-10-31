@@ -1,0 +1,273 @@
+/* ==========================================================================
+   InspoVault — design tokens
+   InspoVault's default dark palette with a centralized light theme.
+   ========================================================================== */
+
+:root {
+  color-scheme: dark;
+
+  /* Brand ---------------------------------------------------------------- */
+  --color-bg: #031211;
+  --color-cream: #e8e4d3;
+  --color-teal: #00aebb;
+  --color-lilac: #e8e4d3;
+  --color-violet: #007f88;
+  --color-white: #e8e4d3;
+
+  /* Surfaces ------------------------------------------------------------- */
+  --color-surface: #0a1e1c;
+  --color-surface-raised: #102724;
+  --color-surface-inset: #061816;
+  --color-cream-surface: #e8e4d3;
+  --color-on-cream: #031211;
+  --color-on-accent: #031211;
+  --color-accent-hover: #007f88;
+
+  /* Borders -------------------------------------------------------------- */
+  --border-width: 1px;
+  --border-width-strong: 2px;
+  --color-border: rgba(232, 228, 211, 0.12);
+  --color-border-strong: rgba(232, 228, 211, 0.22);
+  --color-border-subtle: rgba(232, 228, 211, 0.07);
+  --color-border-on-cream: rgba(3, 18, 17, 0.14);
+  --color-border-on-cream-strong: rgba(3, 18, 17, 0.26);
+
+  /* Text ----------------------------------------------------------------- */
+  --color-text-primary: #e8e4d3;
+  --color-text-muted: rgba(232, 228, 211, 0.78);
+  --color-text-subtle: rgba(232, 228, 211, 0.66);
+  --color-text-on-cream: #031211;
+  --color-text-on-cream-muted: rgba(3, 18, 17, 0.78);
+  --color-text-on-cream-subtle: rgba(3, 18, 17, 0.66);
+
+  /* Teal accents --------------------------------------------------------- */
+  --color-teal-softer: rgba(0, 174, 187, 0.08);
+  --color-teal-soft: rgba(0, 174, 187, 0.14);
+  --color-teal-line: rgba(0, 174, 187, 0.34);
+  --color-teal-glow: rgba(0, 174, 187, 0.16);
+  --color-teal-glow-strong: rgba(0, 174, 187, 0.34);
+  --color-teal-hover: rgba(0, 174, 187, 0.15);
+  --color-focus: #00aebb;
+  --color-focus-on-cream: #031211;
+
+  /* Neutral highlights and overlays -------------------------------------- */
+  --color-inset-highlight: rgba(232, 228, 211, 0.04);
+  --color-cream-soft: rgba(232, 228, 211, 0.08);
+  --color-cream-ring: rgba(232, 228, 211, 0.1);
+  --color-backdrop: rgba(3, 18, 17, 0.82);
+  --color-danger: #ffd4d4;
+  --color-danger-border: rgba(255, 122, 122, 0.28);
+  --color-danger-soft: rgba(255, 122, 122, 0.1);
+
+  /* Semantic aliases ----------------------------------------------------- */
+  --color-bg-page: var(--color-bg);
+  --color-card: var(--color-surface);
+  --color-card-raised: var(--color-surface-raised);
+  --color-link: var(--color-lilac);
+  --color-link-hover: var(--color-cream);
+
+  /* Typography ----------------------------------------------------------- */
+  --font-sans: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont,
+    'Helvetica Neue', Arial, sans-serif;
+  --font-mono: ui-monospace, 'Cascadia Code', 'SFMono-Regular', Consolas,
+    'Liberation Mono', monospace;
+
+  --text-display: clamp(2.75rem, 4.9vw, 4.5rem);
+  --text-h1: clamp(1.875rem, 3vw, 2.5rem);
+  --text-h2: clamp(1.5rem, 2.2vw, 2rem);
+  --text-h3: 0.9375rem;
+  --text-body-lg: clamp(1rem, 1.3vw, 1.125rem);
+  --text-body: 1rem;
+  --text-label: 0.8125rem;
+  --text-small: 0.75rem;
+  --text-micro: 0.6875rem;
+  --text-tiny: 0.625rem;
+
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+
+  --leading-none: 0.98;
+  --leading-tight: 1.12;
+  --leading-snug: 1.35;
+  --leading-normal: 1.55;
+  --leading-relaxed: 1.7;
+
+  --tracking-tighter: -0.055em;
+  --tracking-tight: -0.025em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.12em;
+  --tracking-wider: 0.17em;
+
+  /* Spacing — 4px base --------------------------------------------------- */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-7: 1.75rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-14: 3.5rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+  --space-30: 7.5rem;
+
+  /* Radii ---------------------------------------------------------------- */
+  --radius-xs: 0.25rem;
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1.125rem;
+  --radius-xl: 1.375rem;
+  --radius-2xl: 1.75rem;
+  --radius-full: 999px;
+
+  /* Shadows -------------------------------------------------------------- */
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.24);
+  --shadow-sm: 0 8px 24px rgba(0, 0, 0, 0.22);
+  --shadow-md: 0 18px 48px rgba(0, 0, 0, 0.28);
+  --shadow-lg: 0 28px 80px rgba(0, 0, 0, 0.32);
+  --shadow-cream: 0 28px 80px rgba(0, 0, 0, 0.32),
+    inset 0 1px 0 rgba(232, 228, 211, 0.24);
+  --shadow-teal: 0 0 0 1px var(--color-teal-line),
+    0 12px 36px var(--color-teal-glow);
+  --shadow-focus: 0 0 0 3px rgba(0, 174, 187, 0.2);
+
+  /* Motion --------------------------------------------------------------- */
+  --duration-instant: 120ms;
+  --duration-fast: 180ms;
+  --duration-standard: 260ms;
+  --duration-slow: 380ms;
+  --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-colors: color var(--duration-fast) var(--ease-out),
+    background-color var(--duration-fast) var(--ease-out),
+    border-color var(--duration-fast) var(--ease-out),
+    box-shadow var(--duration-fast) var(--ease-out);
+  --transition-transform: transform var(--duration-fast) var(--ease-out);
+  --transition-base: color var(--duration-fast) var(--ease-out),
+    background-color var(--duration-fast) var(--ease-out),
+    border-color var(--duration-fast) var(--ease-out),
+    box-shadow var(--duration-fast) var(--ease-out),
+    transform var(--duration-fast) var(--ease-out),
+    opacity var(--duration-fast) var(--ease-out);
+
+  /* Layout --------------------------------------------------------------- */
+  --content-max: 75rem;
+  --shell-content-max: 88rem;
+  --sidebar-width: 14.5rem;
+  --topbar-height: 4rem;
+  --touch-target: 2.75rem;
+  --gutter: clamp(1rem, 4vw, 3rem);
+  --header-padding-block: clamp(1.25rem, 2.6vw, 1.75rem);
+  --section-padding-block: clamp(3.5rem, 9vw, 6.25rem);
+  --focus-offset: 3px;
+
+  /* Layers --------------------------------------------------------------- */
+  --z-base: 0;
+  --z-header: 10;
+  --z-skip: 30;
+  --z-dialog: 40;
+  --z-toast: 50;
+
+  /* Gradients ------------------------------------------------------------ */
+  --gradient-page: none;
+  --gradient-card-sheen: none;
+  --gradient-action: linear-gradient(120deg, #00aebb 0%, #007f88 100%);
+  --gradient-teal-line: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0, 174, 187, 0.72),
+    transparent
+  );
+  --gradient-skeleton: linear-gradient(
+    90deg,
+    transparent,
+    rgba(232, 228, 211, 0.07),
+    transparent
+  );
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
+  --color-bg: #f5f8f7;
+  --color-cream: #17312f;
+  --color-teal: #008c91;
+  --color-lilac: #d8f0ed;
+  --color-violet: #006f75;
+  --color-white: #ffffff;
+
+  --color-surface: #ffffff;
+  --color-surface-raised: #ffffff;
+  --color-surface-inset: #eaf3f1;
+  --color-cream-surface: #eaf3f1;
+  --color-on-cream: #17312f;
+  --color-on-accent: #ffffff;
+  --color-accent-hover: #006f75;
+
+  --color-border: #dce7e4;
+  --color-border-strong: #c5d6d2;
+  --color-border-subtle: rgba(23, 49, 47, 0.1);
+  --color-border-on-cream: #dce7e4;
+  --color-border-on-cream-strong: #c5d6d2;
+
+  --color-text-primary: #17312f;
+  --color-text-muted: #405d59;
+  --color-text-subtle: #647875;
+  --color-text-on-cream: #17312f;
+  --color-text-on-cream-muted: #405d59;
+  --color-text-on-cream-subtle: #647875;
+
+  --color-teal-softer: rgba(0, 140, 145, 0.045);
+  --color-teal-soft: #d8f0ed;
+  --color-teal-line: rgba(0, 140, 145, 0.28);
+  --color-teal-glow: rgba(0, 140, 145, 0.1);
+  --color-teal-glow-strong: rgba(0, 140, 145, 0.24);
+  --color-teal-hover: rgba(0, 140, 145, 0.1);
+  --color-focus: #006f75;
+  --color-focus-on-cream: #17312f;
+
+  --color-inset-highlight: rgba(255, 255, 255, 0.8);
+  --color-cream-soft: rgba(23, 49, 47, 0.04);
+  --color-cream-ring: rgba(23, 49, 47, 0.08);
+  --color-backdrop: rgba(12, 31, 29, 0.46);
+  --color-danger: #8c2525;
+  --color-danger-border: rgba(140, 37, 37, 0.22);
+  --color-danger-soft: rgba(140, 37, 37, 0.06);
+
+  --color-bg-page: var(--color-bg);
+  --color-card: var(--color-surface);
+  --color-card-raised: var(--color-surface-raised);
+  --color-link: #006f75;
+  --color-link-hover: #17312f;
+
+  --shadow-xs: 0 1px 2px rgba(23, 49, 47, 0.06);
+  --shadow-sm: 0 8px 24px rgba(23, 49, 47, 0.07);
+  --shadow-md: 0 18px 48px rgba(23, 49, 47, 0.1);
+  --shadow-lg: 0 28px 80px rgba(23, 49, 47, 0.14);
+  --shadow-cream: 0 18px 48px rgba(23, 49, 47, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  --shadow-teal: 0 0 0 1px var(--color-teal-line),
+    0 8px 22px var(--color-teal-glow);
+  --shadow-focus: 0 0 0 3px rgba(0, 111, 117, 0.16);
+
+  --gradient-page: none;
+  --gradient-card-sheen: none;
+  --gradient-action: linear-gradient(120deg, #006f75 0%, #006f75 100%);
+  --gradient-teal-line: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0, 140, 145, 0.48),
+    transparent
+  );
+  --gradient-skeleton: linear-gradient(
+    90deg,
+    transparent,
+    rgba(23, 49, 47, 0.06),
+    transparent
+  );
+}

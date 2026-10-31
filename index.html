@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#031211" />
+    <meta
+      name="description"
+      content="InspoVault is a personal, local-first visual library for saving the websites, screenshots, notes, and details that inspire your next build."
+    />
+    <meta property="og:title" content="InspoVault — Save the spark." />
+    <meta
+      property="og:description"
+      content="A personal visual library for website inspiration, screenshots, notes, and the path back to the source."
+    />
+    <meta property="og:type" content="website" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>InspoVault — Save the spark. Find it when you need it.</title>
+    <script>
+      (() => {
+        let theme = null;
+        try {
+          theme = localStorage.getItem('inspovault_theme_v1');
+        } catch {
+          // Use the system preference when local storage is unavailable.
+        }
+        if (theme !== 'light' && theme !== 'dark') {
+          theme = window.matchMedia('(prefers-color-scheme: light)').matches
+            ? 'light'
+            : 'dark';
+        }
+        document.documentElement.dataset.theme = theme;
+        const themeColor = document.querySelector('meta[name="theme-color"]');
+        if (themeColor) themeColor.content = theme === 'light' ? '#F5F8F7' : '#031211';
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

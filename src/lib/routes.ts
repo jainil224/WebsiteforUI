@@ -1,0 +1,74 @@
+export const defaultRoute = '/dashboard'
+
+export type RoutePath =
+  | '/dashboard'
+  | '/inspirations'
+  | '/favorites'
+  | '/collections'
+  | '/categories'
+  | '/settings'
+
+export type RouteMeta = {
+  title: string
+  navLabel: string
+  eyebrow: string
+  description: string
+}
+
+export const routeMeta: Record<RoutePath, RouteMeta> = {
+  '/dashboard': {
+    title: 'My Inspiration Library',
+    navLabel: 'Dashboard',
+    eyebrow: 'Your workspace',
+    description: 'Keep the ideas. Remember the details.',
+  },
+  '/inspirations': {
+    title: 'All inspirations',
+    navLabel: 'All Inspirations',
+    eyebrow: 'The full vault',
+    description: 'Every reference you save, gathered in one visual place.',
+  },
+  '/favorites': {
+    title: 'Favorites',
+    navLabel: 'Favorites',
+    eyebrow: 'Kept close',
+    description: 'The sparks you want within reach.',
+  },
+  '/collections': {
+    title: 'Collections',
+    navLabel: 'Collections',
+    eyebrow: 'Organise the spark',
+    description: 'Group references around the projects and ideas they serve.',
+  },
+  '/categories': {
+    title: 'Categories',
+    navLabel: 'Categories',
+    eyebrow: 'Browse by type',
+    description: 'Jump into the design details you collect most.',
+  },
+  '/settings': {
+    title: 'Settings',
+    navLabel: 'Settings',
+    eyebrow: 'Your library',
+    description: 'Local-first details and future backup tools.',
+  },
+}
+
+export const navGroups = [
+  {
+    label: 'Workspace',
+    paths: ['/dashboard', '/inspirations', '/favorites'] as RoutePath[],
+  },
+  {
+    label: 'Organize',
+    paths: ['/collections', '/categories'] as RoutePath[],
+  },
+]
+
+export function resolveRoutePath(value: string): RoutePath {
+  if (value in routeMeta) {
+    return value as RoutePath
+  }
+
+  return defaultRoute
+}
