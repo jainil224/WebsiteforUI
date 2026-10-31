@@ -243,6 +243,17 @@ void main(){
     el.addEventListener('wheel', onWheel, { passive: false })
     el.addEventListener('dblclick', onDbl)
 
+    // ---- Performance & Visibility Optimization ----
+    let isVisible = true
+    const intersectionObserver = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries
+        isVisible = Boolean(entry?.isIntersecting)
+      },
+      { threshold: 0.05 },
+    )
+    intersectionObserver.observe(stage)
+
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     const clock = new THREE.Clock()
     let t = 0
@@ -251,6 +262,9 @@ void main(){
     let rafId = 0
 
     function tick() {
+      rafId = requestAnimationFrame(tick)
+      if (!isVisible) return
+
       const dt = Math.min(clock.getDelta(), 0.05)
       rate += (rateT - rate) * Math.min(dt * 6, 1)
       zoom += (zoomT - zoom) * Math.min(dt * 6, 1)
@@ -276,7 +290,6 @@ void main(){
       globe.scale.setScalar(zoom)
       stars.material.opacity = 0.35 + 0.65 * Math.abs(Math.sin(performance.now() * 0.004))
       renderer.render(scene, cam)
-      rafId = requestAnimationFrame(tick)
     }
     tick()
 
