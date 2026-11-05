@@ -6,7 +6,7 @@ find the path back to the source.
 
 **Status:** Phase 2 — Design tokens and electrified visual system.
 
-## Stack--
+## Stack
 
 - React 19
 - Vite 8
