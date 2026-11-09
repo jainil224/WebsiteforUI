@@ -4,7 +4,7 @@ A personal, local-first visual library for the websites, components, and
 interactions that inspire your next build. Save the visual, keep the reason, and
 find the path back to the source.
 
-**Status:** Phase 2 —-- Design tokens and electrified visual system.
+**Status:** Phase 2 — Design tokens and electrified visual system.
 
 ## Stack
 
